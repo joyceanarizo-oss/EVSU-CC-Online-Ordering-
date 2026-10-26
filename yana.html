@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Menu</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0fdf4;
+        }
+
+        header {
+            background: #047857;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .food-card {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px #0002;
+            transition: transform 0.2s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .food-icon {
+            font-size: 50px;
+        }
+
+        .food-card h2 {
+            color: #047857;
+        }
+
+        .available {
+            color: #047857;
+            font-weight: bold;
+        }
+
+        @media (max-width: 500px) {
+            .menu-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>EVSU-CC Food Menu</h1>
+        <p>Choose your favorite meal!</p>
+    </header>
+
+    <main class="menu-container">
+
+        <div class="food-card">
+            <div class="food-icon">🍗</div>
+            <h2>Chicken Meal</h2>
+            <p>Price: ₱75</p>
+            <p class="available">Available</p>
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🍜</div>
+            <h2>Pancit Canton</h2>
+            <p>Price: ₱35</p>
+            <p class="available">Available</p>
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🍔</div>
+            <h2>Burger</h2>
+            <p>Price: ₱40</p>
+            <p class="available">Available</p>
+        </div>
+
+        <div class="food-card">
+            <div class="food-icon">🥤</div>
+            <h2>Iced Juice</h2>
+            <p>Price: ₱20</p>
+            <p class="available">Available</p>
+        </div>
+
+    </main>
+
+    <script>
+        // MEMBER 2: FOOD MENU FEATURE
+
+        const foodMenu = [
+            {
+                name: "Chicken Meal",
+                price: 75,
+                available: true
+            },
+            {
+                name: "Pancit Canton",
+                price: 35,
+                available: true
+            },
+            {
+                name: "Burger",
+                price: 40,
+                available: true
+            },
+            {
+                name: "Iced Juice",
+                price: 20,
+                available: false
+            }
+        ];
+
+        // Display food availability
+        const foodCards = document.querySelectorAll(".food-card");
+
+        foodCards.forEach(function(card, index) {
+            const availability = card.querySelector(".available");
+            const food = foodMenu[index];
+
+            if (!food) {
+                return;
+            }
+
+            if (food.available) {
+                availability.textContent = "Available";
+                availability.style.color = "green";
+            } else {
+                availability.textContent = "Not Available";
+                availability.style.color = "red";
+            }
+        });
+
+        // Display food prices
+        foodCards.forEach(function(card, index) {
+            const food = foodMenu[index];
+
+            if (!food) {
+                return;
+            }
+
+            const price = card.querySelector(".price");
+
+            if (price) {
+                price.textContent = "Price: ₱" + food.price;
+            }
+        });
+    </script>
+</body>
+</html>
